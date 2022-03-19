@@ -163,7 +163,7 @@ _zsh_highlight()
         # On zsh version 5.8.0.2 between the aforementioned commit and the
         # first Config/version.mk bump after it (which, at the time of writing,
         # is yet to come), this condition will false negative.
-        if is-at-least 5.8.0.3 $ZSH_VERSION.0.0; then
+        if is-at-least 5.9.0.0 $ZSH_VERSION.0.0; then
           integer -gr zsh_highlight__memo_feature=1
         else
           integer -gr zsh_highlight__memo_feature=0
@@ -404,7 +404,7 @@ _zsh_highlight_call_widget()
 # We use the new codepath under two conditions:
 #
 # 1. If it's available, which we check by testing for add-zle-hook-widget's availability.
-# 
+#
 # 2. If zsh has the memo= feature, which is required for interoperability reasons.
 #    See issues #579 and #735, and the issues referenced from them.
 #
@@ -414,7 +414,7 @@ _zsh_highlight_call_widget()
 #
 #    See _zsh_highlight for the magic version number.  (The use of 5.8.0.2
 #    rather than 5.8.0.3 as in the _zsh_highlight is deliberate.)
-if is-at-least 5.8.0.2 $ZSH_VERSION.0.0 && _zsh_highlight__function_callable_p add-zle-hook-widget
+if is-at-least 5.9.0.0 $ZSH_VERSION.0.0 && _zsh_highlight__function_callable_p add-zle-hook-widget
 then
   autoload -U add-zle-hook-widget
   _zsh_highlight__zle-line-finish() {
